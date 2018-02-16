@@ -3,40 +3,59 @@ from dynamicarray import DynamicArray
 
 class TestDynamicArray(unittest.TestCase):
 
-    def test_init_should_create(self):
-        x = DynamicArray()
+    def test_init(self):
+        x = DynamicArray(16)
         self.assertNotEqual(x, None)
+        self.assertEqual(len(x), 0)
+        self.assertEqual(x.capacity(), 16)
+
+    def test_add(self):
+        x = DynamicArray()
+        with self.assertRaises(IndexError):
+            x.add(len(x)+1, 1)
+        x.add(len(x), 1)
+        x.add(len(x), 2)
+        self.assertEqual(x[1], 2)
+        self.assertEqual(x[0], 1)
+        self.assertEqual(x.capacity(), 2)
+        self.assertEqual(len(x), 2)
+
+    def test_resize(self):
+        x = DynamicArray()
+        x.add(len(x), 1)
+        x.add(len(x), 2)
+        x.resize(1)
+        with self.assertRaises(IndexError):
+            x.add(x[1], 2)
+        self.assertEqual(x[0], 1)
+        self.assertEqual(x.capacity(), 1)
+        self.assertEqual(len(x), 1)
+
+    def test_remove(self):
+        x = DynamicArray()
+        x.add(len(x), 1)
+        x.add(len(x), 2)
+        x.remove(1)
+        with self.assertRaises(IndexError):
+            x.add(x[1], 2)
+        self.assertEqual(x[0], 1)
+        self.assertEqual(x.capacity(), 2)
+        self.assertEqual(len(x), 1)
 
     def test_init_size_should_be_zero(self):
-        x = DynamicArray()
-        self.assertEqual(x._size, 0)
-        self.assertEqual(len(x), 0)
+        pass
 
     def test_init_capacity_should_be_sixteen(self):
-        x = DynamicArray()
-        self.assertEqual(x._capacity, 16)
+        pass
 
     def test_get_idx_checks_bounds(self):
-        x = DynamicArray()
-        with self.assertRaises(IndexError) as context:
-            x.get(0)
-        self.assertRaises(context.exception)
+        pass
 
     def test_append_single_element(self):
-        x = DynamicArray()
-        x.append(99)
-        self.assertEqual(x.get(0), 99)
+        pass
 
     def test_add_single_element(self):
-        x = DynamicArray()
-        x.append(99)
-        x.add(0, 100)
-        x.add(1, 101)
-        self.assertEqual(x.get(0), 100)
-        self.assertNotEqual(x.get(1), 99)
-        self.assertEqual(x.get(2), 99)
-        self.assertEqual(x.size(), 3)
-        x.print_self()
+        pass
 
 if __name__ == "__main__":
     unittest.main()
