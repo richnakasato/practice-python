@@ -1,9 +1,9 @@
 class DynamicArray(object):
 
-    def __init__(self, capacity=1):
+    def __init__(self, start_capacity=1):
         self._size = 0
-        self._capacity = capacity
-        self._array = [None]*capacity
+        self._capacity = start_capacity
+        self._array = [None] * start_capacity
 
     def __len__(self):
         return self._size
@@ -26,7 +26,7 @@ class DynamicArray(object):
         pass
 
     def append(self, val):
-        add(self, self._size, val)
+        self.add(self, self._size, val)
 
     def add(self, idx, val):
         if not 0 <= idx <= self._size:
