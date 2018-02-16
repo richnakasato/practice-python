@@ -37,7 +37,7 @@ class TestDynamicArray(unittest.TestCase):
         x.add(len(x), 2)
         x.remove(1)
         with self.assertRaises(IndexError):
-            x.add(x[1], 2)
+            x.remove(1)
         self.assertEqual(x[0], 1)
         self.assertEqual(x.capacity(), 2)
         self.assertEqual(len(x), 1)
