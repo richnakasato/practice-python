@@ -35,6 +35,17 @@ class LinkedList(object):
     def size(self):
         return len(self)
 
+    def get(self, idx):
+        count = 0
+        traverse = self._head
+        while traverse:
+            if count == idx:
+                return traverse._element
+            traverse = traverse._next
+            count += 1
+        raise IndexError('invalid index')
+
+
     def insert(self, idx=0, element=None):
         if idx == 0:
             new_head = Node(element, self._head)
@@ -51,4 +62,19 @@ class LinkedList(object):
             count += 1
         raise IndexError('invalid index')
 
+    def remove(self, idx=0):
+        if not self._head:
+            raise IndexError('invalid index')
+        if idx == 0:
+            self._head = self._head._next
+            return
+        count = 0
+        curr = self._head
+        while curr._next:
+            count += 1
+            if count == idx:
+                curr._next = curr._next._next
+                return
+            curr = curr._next
+        raise IndexError('invalid index')
 

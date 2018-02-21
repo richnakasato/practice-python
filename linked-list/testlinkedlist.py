@@ -24,5 +24,25 @@ class TestLinkedList(unittest.TestCase):
         x.insert(6, 50)
         print(str(x))
 
+    def test_remove(self):
+        x = LinkedList(0)
+        print(str(x))
+        x.remove(0)
+        with self.assertRaises(IndexError):
+            x.remove(0)
+        x.insert(0, 10)
+        x.insert(0, 20)
+        x.remove(0)
+        self.assertEqual(x.get(0), 10)
+        print(str(x))
+        x.insert(0, 30)
+        x.insert(0, 40)
+        x.remove(0)
+        print(str(x))
+        self.assertEqual(x.get(0), 30)
+        x.remove(1)
+        print(str(x))
+        self.assertEqual(x.get(0), 30)
+
 if __name__ == "__main__":
     unittest.main()
