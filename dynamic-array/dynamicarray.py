@@ -23,12 +23,14 @@ class DynamicArray(object):
         return len(self)
 
     def get(self, idx):
-        pass
+        return self[idx]
 
-    def append(self, val):
-        self.add(self, self._size, val)
+    def set(self, idx, new_element):
+        if not 0 <= idx < self._size:
+            raise IndexError('invalid index')
+        self._array[idx] = new_element
 
-    def add(self, idx, val):
+    def add(self, idx=0, new_element):
         if not 0 <= idx <= self._size:
             raise IndexError('invalid index')
         if self._size == self._capacity:
@@ -36,24 +38,16 @@ class DynamicArray(object):
         if not idx == self._size:
             for i in range(self._size-1, idx, -1):
                 self._array[i] = self._array[i-1]
-        self._array[idx] = val
+        self._array[idx] = new_element
         self._size += 1
 
-    def pop(self):
-        return remove(self, self._size-1)
-
-    def remove(self, idx):
+    def remove(self, idx=0):
         if not 0 <= idx < self._size:
             raise IndexError('invalid index')
-        temp = self._array[idx]
         for i in range(idx, self._size-1):
             self._array[i] = self._array[i+1]
         self._array[self._size-1] = None
         self._size -= 1
-        return temp
-
-    def set(self, idx, val):
-        pass
 
     def resize(self, new_capacity):
         new_array = [None] * new_capacity
@@ -63,3 +57,4 @@ class DynamicArray(object):
         self._array = new_array
         self._capacity = new_capacity
         self._size = size
+

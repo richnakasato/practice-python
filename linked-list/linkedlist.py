@@ -1,20 +1,14 @@
 class Node(object):
 
-    """Docstring for Node. """
-
-    def __init__(self, element=None, next=None):
-        """TODO: to be defined1. """
-        self._element = element
-        self._next = next
+    def __init__(self, new_element=None, new_next=None):
+        self._element = new_element
+        self._next = new_next
 
 
 class LinkedList(object):
 
-    """Docstring for LinkedList. """
-
-    def __init__(self, element=None, next=None):
-        """TODO: to be defined1. """
-        self._head = Node(element, next)
+    def __init__(self):
+        self._head = None
 
     def __len__(self):
         count = 0
@@ -32,10 +26,7 @@ class LinkedList(object):
             traverse = traverse._next
         return ' '.join(output)
 
-    def size(self):
-        return len(self)
-
-    def get(self, idx):
+    def __getitem__(self, idx):
         count = 0
         traverse = self._head
         while traverse:
@@ -45,17 +36,33 @@ class LinkedList(object):
             count += 1
         raise IndexError('invalid index')
 
+    def size(self):
+        return len(self)
 
-    def insert(self, idx=0, element=None):
+    def get(self, idx):
+        return self[idx]
+
+    def set(self, idx, new_element):
+        count = 0
+        traverse = self._head
+        while traverse:
+            if count == idx:
+                traverse._element = new_element
+                return
+            traverse = traverse._next
+            count += 1
+        raise IndexError('invalid index')
+
+    def add(self, idx=0, new_element):
         if idx == 0:
-            new_head = Node(element, self._head)
+            new_head = Node(new_element, self._head)
             self._head = new_head
             return
         count = 1
         prev = self._head
         while prev:
             if count == idx:
-                to_insert = Node(element, prev._next)
+                to_insert = Node(new_element, prev._next)
                 prev._next = to_insert
                 return
             prev = prev._next
@@ -63,18 +70,16 @@ class LinkedList(object):
         raise IndexError('invalid index')
 
     def remove(self, idx=0):
-        if not self._head:
-            raise IndexError('invalid index')
         if idx == 0:
             self._head = self._head._next
             return
-        count = 0
-        curr = self._head
-        while curr._next:
-            count += 1
+        count = 1
+        prev = self._head
+        while prev._next:
             if count == idx:
-                curr._next = curr._next._next
+                prev._next = prev._next._next
                 return
-            curr = curr._next
+            prev = prev._next
+            count += 1
         raise IndexError('invalid index')
 
