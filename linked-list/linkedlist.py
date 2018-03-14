@@ -53,7 +53,7 @@ class LinkedList(object):
             count += 1
         raise IndexError('invalid index')
 
-    def add(self, idx=0, new_element):
+    def add(self, idx=0, new_element=None):
         if idx == 0:
             new_head = Node(new_element, self._head)
             self._head = new_head
@@ -70,6 +70,8 @@ class LinkedList(object):
         raise IndexError('invalid index')
 
     def remove(self, idx=0):
+        if self._head == None:
+            raise IndexError('invalid index')
         if idx == 0:
             self._head = self._head._next
             return

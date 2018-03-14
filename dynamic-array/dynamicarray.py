@@ -30,7 +30,7 @@ class DynamicArray(object):
             raise IndexError('invalid index')
         self._array[idx] = new_element
 
-    def add(self, idx=0, new_element):
+    def add(self, idx=0, new_element=None):
         if not 0 <= idx <= self._size:
             raise IndexError('invalid index')
         if self._size == self._capacity:

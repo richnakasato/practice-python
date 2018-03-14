@@ -36,11 +36,10 @@ class TestDynamicArray(unittest.TestCase):
         x.add(len(x), 1)
         x.add(len(x), 2)
         x.add(len(x), 3)
-        removed = x.remove(1)
+        x.remove(1)
         with self.assertRaises(IndexError):
             x.remove(2)
         self.assertEqual(x[0], 1)
-        self.assertEqual(removed, 2)
         self.assertEqual(x[1], 3)
         self.assertEqual(x.capacity(), 4)
         self.assertEqual(len(x), 2)
