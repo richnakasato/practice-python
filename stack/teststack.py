@@ -1,15 +1,30 @@
 import unittest
 from stack import Stack
+from stack_pylist import StackPyList
 
 
 class TestStack(unittest.TestCase):
 
-    """Docstring for TestStack. """
-
-    def project_should_do_something(self):
-        """TODO: A test for project to do something. """
-        x = Stack()
+    def test_pylist_init(self):
+        x = StackPyList()
         self.assertNotEqual(x, None)
+
+    def test_pylist_add(self):
+        x = StackPyList()
+        x.push(1)
+        x.push(2)
+        x.push(3)
+        x.push(4)
+        x.push(5)
+        self.assertEqual(x.top(), 5)
+        x.pop()
+        self.assertEqual(x.top(), 4)
+        x.pop()
+        self.assertEqual(x.top(), 3)
+        x.pop()
+        self.assertEqual(x.top(), 2)
+        x.pop()
+        self.assertEqual(x.top(), 1)
 
 
 if __name__ == "__main__":

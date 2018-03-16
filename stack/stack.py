@@ -1,7 +1,7 @@
 class Stack(object):
 
-    """Docstring for Stack. """
+    """"""
 
-    def __init__(self):
-        """TODO: to be defined1. """
+    def __init__(self): pass
 
+    def __str__(self): pass
