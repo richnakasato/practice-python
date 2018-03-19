@@ -12,8 +12,8 @@ class StackPyList(object):
         return len(self._data)
 
     def top(self):
-        if self.is_empty():
-            return None
+        if is_empty(self):
+            raise IndexError('instance is empty')
         return self._data[len(self)-1]
 
     def is_empty(self):
@@ -23,5 +23,6 @@ class StackPyList(object):
         self._data.append(element)
 
     def pop(self):
-        if not self.is_empty():
-            self._data.pop(len(self)-1)
+        if self.is_empty():
+            raise IndexError('instance is empty')
+        self._data.pop(len(self)-1)
